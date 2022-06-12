@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on Prosperosus Doc</title>
+    <link>https://example.com/development/</link>
+    <description>Recent content in Development on Prosperosus Doc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://example.com/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design Philosopy</title>
+      <link>https://example.com/development/design_philosophy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/design_philosophy/</guid>
+      <description>It&amp;rsquo;s a developer wet dream to be able to build a highly decoupled system that allow new features to just slot in flawlessly without disturbing existing one. However, that&amp;rsquo;s rather difficult to achieve, even if somewhow we&amp;rsquo;re able to, it will certainly come with a cost like any other.
+Ok then what&amp;rsquo;s the approach we should take to tackle this delicate matter?
+okay first we&amp;rsquo;ll have to list our priorities</description>
+    </item>
+    <item>
+      <title>Code Guidelines</title>
+      <link>https://example.com/development/code_guidlines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/code_guidlines/</guid>
+      <description>Forced Static Typing Unfortunately GDScript Static Typing isn&amp;rsquo;t mandatory even when the optional Static Typing is turned on it&amp;rsquo;s still not forced which is not aligned with our M mindset can lead into some weird unwanted behavior.
+Our only option is to force it ourself, but sometimes as a human we forgor and that&amp;rsquo;s ogey just add the type on the Litter Pick-up phase.
+Naming Convention  class	= PascalCase node	= PascalCase scene	= PascalCase variable	= snake_case function	= snake_case file	= snake_case  Access Modifier GDScript doesn&amp;rsquo;t really have an Access Modifier so this is just a convention to mark stuff therefore this will not effect the code in any way.</description>
+    </item>
+    <item>
+      <title>Pattern and Architecture</title>
+      <link>https://example.com/development/pattern_and_architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/pattern_and_architecture/</guid>
+      <description>Base Paradigm The official godot documentation favor traditional OOP over any other paradigm mainly ECS and we&amp;rsquo;re going to follow that, but it&amp;rsquo;s not restricting as in godot also offer a high level composition with scene but it&amp;rsquo;ll be primarily composed with Inheritance
+Call Down Signal Up As a rule of thumb Parent should manage it&amp;rsquo;s child, and the child shouldn&amp;rsquo;t call the parent directly. If the child need the parent to do something it should use a signal.</description>
+    </item>
+    <item>
+      <title>Refactoring</title>
+      <link>https://example.com/development/refactoring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/refactoring/</guid>
+      <description>Why we refactor  Makes the code easier to understand It helps us find bugs It prevent spaghet reach a critical point It will be a time saver in the long run  When to refactor Traditionally we should refactor when the same code is written three times and when it&amp;rsquo;s startig to become hard to understand. But in this project we&amp;rsquo;ll do it after every feature added.
+Signs of spaghettification This is what we need to refactor if any of this are true then it&amp;rsquo;s begging to be refactored:</description>
+    </item>
+    <item>
+      <title>Testing</title>
+      <link>https://example.com/development/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/testing/</guid>
+      <description>Why Testing There&amp;rsquo;s a lot of benefits that come with testing but primarily we need to test our code for these reasons:
+ It discourage tight coupling It Improves our design It saves time in the long run  How We&amp;rsquo;re going to use GUT plugin for testing, it works like any other testing tool so there&amp;rsquo;s no need of further explanation because it&amp;rsquo;s just generic unit testing.
+One thing to note that if the scene really needs a global data at the very least use depedency injection instead of tight coupling.</description>
+    </item>
+    <item>
+      <title>Versioning</title>
+      <link>https://example.com/development/versioning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/development/versioning/</guid>
+      <description>We&amp;rsquo;re not going to use any conventional versioning here, we&amp;rsquo;re going to use our own versioning method which is Version Milestone: Codename
+Example: Combat Ready: Chamomile
+For the code name we&amp;rsquo;re going to use flower name to be inline with the recurring theme of the game.
+Since we won&amp;rsquo;t do any patch after the release it&amp;rsquo;s not neccesary to use semantic versioning.</description>
+    </item>
+  </channel>
+</rss>

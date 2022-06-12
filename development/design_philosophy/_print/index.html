@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 4.0.4&#43;tip">
+    <meta name="description" content="Documentation for the critically belated ARPG Aonahara Downfall">
+    <meta name="author" content="Aonahara Resistance">
+    <title>Design Philosopy :: Prosperosus Doc</title>
+    <link rel="canonical" type="text/html" href="/development/design_philosophy/" title="Prosperosus Doc" />
+    <link rel="alternate" type="application/rss&#43;xml" href="/development/design_philosophy/index.xml" title="Prosperosus Doc" />
+    <link href="/css/nucleus.css?1655045976" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1655045976" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1655045976" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1655045976" rel="stylesheet">
+    <link href="/css/auto-complete.css?1655045976" rel="stylesheet">
+    <link href="/css/theme.css?1655045976" rel="stylesheet">
+    <link href="/css/theme-relearn-dark.css?1655045976" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1655045976" rel="stylesheet">
+    <link href="/css/variant.css?1655045976" rel="stylesheet">
+    <link href="/css/print.css?1655045976" rel="stylesheet">
+    <script src="/js/variant.js?1655045976"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      variants.init( [ 'relearn-dark' ] );
+    </script>
+    <script src="/js/jquery.min.js?1655045976"></script>
+
+  </head>
+  <body class="mobile-support print" data-url="/development/design_philosophy/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+             <a class="nav nav-next" href="/development/code_guidlines/" title="Code Guidelines (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+             <a class="nav nav-prev" href="/development/" title="Development (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="top-print-link">
+            <a class="print-link" title='Print whole chapter (CTRL+ALT+p)' href="/development/design_philosophy/_print/">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit (CTRL+ALT+e)' href="https://github.com/Aonahara-Resistance/Aonahara-Downfall-Doc-Generator/edit/main/content/development/design_philosophy/_index.en.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="/"><span itemprop="name">Prosperosus Documentation</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/development/"><span itemprop="name">Development</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/development/design_philosophy/" aria-disabled="true"><span itemprop="name">Design Philosopy</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#compound-battle-plan">Compound Battle Plan</a></li>
+        <li><a href="#relentless-execution">Relentless Execution</a></li>
+        <li><a href="#litter-pick-up">Litter Pick-up</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+    
+          <article>
+
+<h1>Design Philosopy</h1>
+<p>It&rsquo;s a developer wet dream to be able to build a highly decoupled system that allow new features to just slot in flawlessly without disturbing existing one. However, that&rsquo;s rather difficult to achieve, even if somewhow we&rsquo;re able to, it will certainly come with a cost like any other.</p>
+<p>Ok then what&rsquo;s the approach we should take to tackle this delicate matter?<br>
+okay first we&rsquo;ll have to list our priorities</p>
+<ul>
+<li>Rapid feature release</li>
+<li>Ease of tweaking</li>
+<li>Maintainability of said features</li>
+</ul>
+<p>My answer is to combine the speed of mobile warfare and the organization of grand battle plan, is that even possible?<br>
+Yes, I call it the <strong>Nimble Forsythia</strong>.</p>
+<p>In short this <del>war doctrine</del> design philosopy start with anticipating apparent problems and ignoring scary but vague problems and then goes into full speed while doing a little cleaning along the way by the end of a major patch we&rsquo;ll take a brake and see if there&rsquo;s new apparent problem and then adress it if there&rsquo;s any.</p>
+<p>There&rsquo;s three main component to this philosopy</p>
+<ul>
+<li>Compound Battle Plan</li>
+<li>Relentless Execution</li>
+<li>Litter pick-up</li>
+</ul>
+<h3 id="compound-battle-plan">Compound Battle Plan</h3>
+<p>In traditional SDLC the planning will be done once at the start of the project, However we&rsquo;ll do it after every major patch.<br>
+Contrary to other software project we don&rsquo;t have the luxury of knowing everything at the very beginning, so to cope with that we&rsquo;ll do smaller design phase multiple times.</p>
+<p>This short planning phase will result in faster features being done but if we&rsquo;re not careful the whole thing can crumble, that&rsquo;s where the Litter Pick-up and the <em>compound</em> part come into play.</p>
+<p>After the end of every major patch, the code will start to tangle into spaghet but it won&rsquo;t be too spaghet, Litter Pick-up will clean the smaller spaghet and the planning phase at the start of the next cycle will fix glaring architectural problems.</p>
+<h3 id="relentless-execution">Relentless Execution</h3>
+<p>After the planning phase is completed we&rsquo;re going to switch into full flank speed and try to follow the set guidelines but don&rsquo;t show any hesitation don&rsquo;t think of problems that <em>might</em> come in the future.</p>
+<p>But isn&rsquo;t this dangerous? Yes, but our first priority is to ship the features first so it&rsquo;s fine and also there&rsquo;s two percautions set in place to prevent too much damage which are:</p>
+<ul>
+<li>Unit testing</li>
+<li>Litter Pick-up</li>
+</ul>
+<p>Unit testing discourage us from coupling system too much, because well the test won&rsquo;t run if the scene can&rsquo;t work by itself.<br>
+And Litter Pick-up untangle mess before it reach a critical point.</p>
+<h3 id="litter-pick-up">Litter Pick-up</h3>
+<p>To put it simply Litter-pickup is a refactoring process that&rsquo;s being done after every feature release which focus on cleaning the small but numerous mess we&rsquo;ve created during the creation of said feature.</p>
+
+<div class="box notices cstyle info">
+    <div class="box-label"><i class="fa-fw fas fa-info-circle"></i> Info</div>
+    <div class="box-content">
+<p>This refactoring process focus on cleaning little spaghet tomfoolery instead of the bigger architectural problems.</p>
+    </div>
+</div>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <style>
+            #logo img,
+            #logo img * {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              fill: #282828 !important;
+              fill: var(--MENU-SECTIONS-BG-color) !important;
+              opacity: .945;
+            }
+            a#logo {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
+              font-size: 24px;
+              font-weight: 300;
+              margin-top: -13px;
+              white-space: nowrap;
+            }
+            a#logo:hover {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+            }
+            #logo img {
+              margin-bottom: -20px;
+              margin-left: -25.5px;
+								webkit-transform: scaleX(-1);
+								transform: scaleX(-1);
+            }
+            @media only all and (max-width: 59.938em) {
+              a#logo {
+                font-size: 25px;
+                margin-top: -3px;
+              }
+              #logo img {
+                margin-bottom: -12px;
+              }
+            }
+            @media all and (-ms-high-contrast:none) {
+              /* IE11s understanding of positioning is weird at best */
+              a#logo {
+                margin-top: -58px;
+              }
+              #logo img {
+                margin-bottom: -62px;
+              }
+            }
+          </style>
+          <a id="logo" href="/">
+						<img height="50"  src="https://cdn.discordapp.com/attachments/825577206696771664/984383862203379722/emu_head.png"/>
+						prosperosus doc
+          </a>
+
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script src="/js/lunr.min.js?1655045976"></script>
+        <script src="/js/auto-complete.js?1655045976"></script>
+        <script src="/js/search.js?1655045976"></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics collapsible-menu">
+          <li data-nav-id="/general/" title="General" class="dd-item"><input type="checkbox" id="section-1f0054c808cdc74bb235e28a0afa39e9" class="toggle"/><label for="section-1f0054c808cdc74bb235e28a0afa39e9" ></label><a href="/general/">General<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/general/introduction/" title="Introduction" class="dd-item"><a href="/general/introduction/">Introduction<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/general/milestones/" title="Milestones" class="dd-item"><a href="/general/milestones/">Milestones<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/game-design/" title="Game Design" class="dd-item"><input type="checkbox" id="section-b7ef76c9bba23d547ac82da61dec3215" class="toggle"/><label for="section-b7ef76c9bba23d547ac82da61dec3215" ></label><a href="/game-design/">Game Design<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/game-design/blessing/" title="Blessing" class="dd-item"><a href="/game-design/blessing/">Blessing<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/boss/" title="Boss" class="dd-item"><a href="/game-design/boss/">Boss<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/character/" title="Character" class="dd-item"><a href="/game-design/character/">Character<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/consumable/" title="Consumable" class="dd-item"><a href="/game-design/consumable/">Consumable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/enemy/" title="Enemy" class="dd-item"><a href="/game-design/enemy/">Enemy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/weapon/" title="Weapon" class="dd-item"><a href="/game-design/weapon/">Weapon<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/development/" title="Development" class="dd-item parent"><input type="checkbox" id="section-4f0a8856bebd6a1716664666c2720c57" class="toggle" checked/><label for="section-4f0a8856bebd6a1716664666c2720c57" ></label><a href="/development/">Development<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/development/design_philosophy/" title="Design Philosopy" class="dd-item active"><a href="/development/design_philosophy/">Design Philosopy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/code_guidlines/" title="Code Guidelines" class="dd-item"><a href="/development/code_guidlines/">Code Guidelines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/pattern_and_architecture/" title="Pattern and Architecture" class="dd-item"><a href="/development/pattern_and_architecture/">Pattern and Architecture<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/refactoring/" title="Refactoring" class="dd-item"><a href="/development/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/testing/" title="Testing" class="dd-item"><a href="/development/testing/">Testing<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/versioning/" title="Versioning" class="dd-item"><a href="/development/versioning/">Versioning<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-dark" value="relearn-dark" selected>Relearn Dark</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+	    <p></p>
+
+        </div>
+      </div>
+    </aside>
+
+    <script src="/js/clipboard.min.js?1655045976"></script>
+    <script src="/js/perfect-scrollbar.min.js?1655045976"></script>
+    <script src="/js/featherlight.min.js?1655045976"></script>
+    <script src="/js/theme.js?1655045976"></script>
+  </body>
+</html>

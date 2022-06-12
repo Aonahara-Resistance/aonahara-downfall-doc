@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Game Design on Prosperosus Doc</title>
+    <link>https://example.com/game-design/</link>
+    <description>Recent content in Game Design on Prosperosus Doc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://example.com/game-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blessing</title>
+      <link>https://example.com/game-design/blessing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/blessing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Boss</title>
+      <link>https://example.com/game-design/boss/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/boss/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Character</title>
+      <link>https://example.com/game-design/character/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/character/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Consumable</title>
+      <link>https://example.com/game-design/consumable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/consumable/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Enemy</title>
+      <link>https://example.com/game-design/enemy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/enemy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Weapon</title>
+      <link>https://example.com/game-design/weapon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/game-design/weapon/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

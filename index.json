@@ -1,0 +1,142 @@
+[
+  {
+    "content": "It’s a developer wet dream to be able to build a highly decoupled system that allow new features to just slot in flawlessly without disturbing existing one. However, that’s rather difficult to achieve, even if somewhow we’re able to, it will certainly come with a cost like any other.\nOk then what’s the approach we should take to tackle this delicate matter?\nokay first we’ll have to list our priorities\n Rapid feature release Ease of tweaking Maintainability of said features  My answer is to combine the speed of mobile warfare and the organization of grand battle plan, is that even possible?\nYes, I call it the Nimble Forsythia.\nIn short this war doctrine design philosopy start with anticipating apparent problems and ignoring scary but vague problems and then goes into full speed while doing a little cleaning along the way by the end of a major patch we’ll take a brake and see if there’s new apparent problem and then adress it if there’s any.\nThere’s three main component to this philosopy\n Compound Battle Plan Relentless Execution Litter pick-up  Compound Battle Plan In traditional SDLC the planning will be done once at the start of the project, However we’ll do it after every major patch.\nContrary to other software project we don’t have the luxury of knowing everything at the very beginning, so to cope with that we’ll do smaller design phase multiple times.\nThis short planning phase will result in faster features being done but if we’re not careful the whole thing can crumble, that’s where the Litter Pick-up and the compound part come into play.\nAfter the end of every major patch, the code will start to tangle into spaghet but it won’t be too spaghet, Litter Pick-up will clean the smaller spaghet and the planning phase at the start of the next cycle will fix glaring architectural problems.\nRelentless Execution After the planning phase is completed we’re going to switch into full flank speed and try to follow the set guidelines but don’t show any hesitation don’t think of problems that might come in the future.\nBut isn’t this dangerous? Yes, but our first priority is to ship the features first so it’s fine and also there’s two percautions set in place to prevent too much damage which are:\n Unit testing Litter Pick-up  Unit testing discourage us from coupling system too much, because well the test won’t run if the scene can’t work by itself.\nAnd Litter Pick-up untangle mess before it reach a critical point.\nLitter Pick-up To put it simply Litter-pickup is a refactoring process that’s being done after every feature release which focus on cleaning the small but numerous mess we’ve created during the creation of said feature.\n Info This refactoring process focus on cleaning little spaghet tomfoolery instead of the bigger architectural problems.\n  ",
+    "description": "",
+    "tags": null,
+    "title": "Design Philosopy",
+    "uri": "/development/design_philosophy/"
+  },
+  {
+    "content": "General information regarding Aonahara: Downfall\nToC  Introduction Mielstones  ",
+    "description": "",
+    "tags": null,
+    "title": "General",
+    "uri": "/general/"
+  },
+  {
+    "content": "About Aonahara: Downfall or project prosperosus is a game born from a joke (just like everything in Aonahara), after going thorugh multiple genre shift the game finally settled as an ARPG combined with Bullet Hell, Fn like to describe it as soul knight ish bullet hell.\nThe idea was born around late march 2021, at first there was only one person working on it however during december 2021 there was a somewhat open recruitment and since then a fair amount of people joined the unpaid labor, which help boost the game progress by a lot.\nAs of now the game is still in development and it looks like the sky is still as far as the eye can see but we are certain someday we’ll reach it.\nWho is directly involved  Ashu.mf\t| Concept Artist Emuu\t| Character Artist Fn\t| Pixel Artist Henry\t| Designer Jason\t| Designer, Manager, Tester Khanh\t| Chracter Artist Kitsune\t| Developer, Kon-sultant Meika\t| Proofreader Moon\t| Writer Nitsu\t| Designer, Tester, Proofreader posei\t| Developer  Outsourced Help  Belaga\t| Consultant Soggy\t| Consultant  ",
+    "description": "",
+    "tags": null,
+    "title": "Introduction",
+    "uri": "/general/introduction/"
+  },
+  {
+    "content": "Forced Static Typing Unfortunately GDScript Static Typing isn’t mandatory even when the optional Static Typing is turned on it’s still not forced which is not aligned with our M mindset can lead into some weird unwanted behavior.\nOur only option is to force it ourself, but sometimes as a human we forgor and that’s ogey just add the type on the Litter Pick-up phase.\nNaming Convention  class\t= PascalCase node\t= PascalCase scene\t= PascalCase variable\t= snake_case function\t= snake_case file\t= snake_case  Access Modifier GDScript doesn’t really have an Access Modifier so this is just a convention to mark stuff therefore this will not effect the code in any way.\nTo mark a variable as private prefix it with an underscore.\nleave public and protected variable as is.\nMethod doesn’t have an access modifier, a method with underscore prefix indicate that it’s somekind of callback function and not a private metod. If an object can access another object method then it’s either safe to do so or there’s something wrong with the architecture, as a rule of thumb if the method you’re trying to access is part of the local scene tree then it’s fine to access it but if it’s not please proceed with caution.\nGetter Setter Only create getter setter when there’s an extra stuff taking place if the getter setter serve no purpose it’s better to not have them in the first place.\nprefix the member variable with an underscore\ngetter: get_variable_name\nsetter: set_variable_name\nRedundant:\nfunc set_is_in_battle(new_state: bool) -\u003e void: is_in_battle = new_state Reasonable:\nfunc set_is_in_battle(new_state: bool) -\u003e void: if new_state == true: battle_timer.start() is_in_battle = new_state emit_signal(\"battle_state_changed\") Exporting Variable We want our designer workflow to be as frictionless as possible and providing them with the ability to tweak stuff inside without touching the code is a great value and this can be done with expoting the variables.\nTo export variable we need to prefix our variable with the export keyword followed by the export option variable name and then the type.\nExample: export(String, MULTILINE) var skill_description: String\n",
+    "description": "",
+    "tags": null,
+    "title": "Code Guidelines",
+    "uri": "/development/code_guidlines/"
+  },
+  {
+    "content": "This page will provide all the information regarding game design, from design guidelines to the design output, all of that should be included here.\nThis page will be properly maintained to eliminate confusion among the designers, so please prefer to this over any other scattered docs out there.\n",
+    "description": "",
+    "tags": null,
+    "title": "Game Design",
+    "uri": "/game-design/"
+  },
+  {
+    "content": "To see how far we’ve come and how close is our imminent victory\nEarly Build  Movement Basic Enemy Character Base Basic Combat  Playable  Early Characters Skill System Buff and Blessing  Combat Ready  Consumables Modular Levels Firing Range Cheat Pannel Flushed Out Enemy AI Inventory Equipment  Feature Complete  Leveling Shop Boss Fight Quest Limit Break\n…  Content Complete ",
+    "description": "",
+    "tags": null,
+    "title": "Milestones",
+    "uri": "/general/milestones/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Blessing",
+    "uri": "/game-design/blessing/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Boss",
+    "uri": "/game-design/boss/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Character",
+    "uri": "/game-design/character/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Consumable",
+    "uri": "/game-design/consumable/"
+  },
+  {
+    "content": "The development doc will primary be about the safety and regulations of this world class ravioli spaghet factory, the safety and regulations exist to prevent anyone to make a spaghet that’s too spaghet which will result in death by a thousand cuts.\nIn all seriousness we should try our best to follow these guidelines because the code will be around for a while until we can ditch it and if we’re not careful it can result into a nasty productivity drop.\nI hate to say this but unfortunately this will only prevent the code to become less spaghet and not to eradicate the entire spaghet, every pattern and paradigm come with consequences, even the perfect combinations of patterns will still result in some drawbacks but it’s still better than not using any pattern at all.\n Tip Our responsibility is not to create the greatest the most modular scratch free architecture but to create a working game, so if there’s some imperfection here and there it’s perfectly fine if the game runs.\n  ",
+    "description": "",
+    "tags": null,
+    "title": "Development",
+    "uri": "/development/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Enemy",
+    "uri": "/game-design/enemy/"
+  },
+  {
+    "content": "Base Paradigm The official godot documentation favor traditional OOP over any other paradigm mainly ECS and we’re going to follow that, but it’s not restricting as in godot also offer a high level composition with scene but it’ll be primarily composed with Inheritance\nCall Down Signal Up As a rule of thumb Parent should manage it’s child, and the child shouldn’t call the parent directly. If the child need the parent to do something it should use a signal.\nExample:\n// Do // Call Down get_node(\"child\").do_something() // Signal Up signal child_hurt func damaged(): emit_signal(\"child_hurt\") func _on_child_hurt(): // do_something()  // Don't // Call up get_node(\"../..\").parent_do_something() Inheritance over Composition As mentioned above godot favor Inheritance over Composition for example A player class would look like this\nEntity -\u003e Character instead of\nCharacter Control Sprite ... But since godot support combining scens togther it will usually looks like this\nKinematicBody2D -\u003e Entity -\u003e Character -\u003e Sprite -\u003e Area2D -\u003e Hitbox -\u003e Area2d -\u003e Hurtbox -\u003e Node2D -\u003e Weapon In this specific project, we should encourage shallow Inheritance but wide.\nContext Based Coupling Objects should be coupled when they’re related enough.\nExample:\nA player will have a sprite and this instance of sprite is specifically exist for the player itself so any other object will not cares about its existence is the character base class therefore it’s safe to tightly couple them.\nIf it’s not related enough, do not couple them\nExample:\nAn npc have the ability to prompt dialog, so at a first glance it is reasonable to put the dialog node inside the scene tree of that NPC but dialog can also can be called other than NPC so it’s a bad idea to couple them together, if this is the case please refer to Global Signal.\nSignal and Global Signal This is an extennsion of the regular Signal pattern the regular signal pattern usually used when a child needs to notify its parent that something happened, if that’s the case a regular signal will do wonders but when other Node needs to know something happened but doesn’t have a direct connection to the Node that’s when we should use Global Signal.\nWe will use a forbidden technique here:\nSingleton\nCalm dowm, this is probably one of the safest singleton that we can use because it doesn’t create any tight coupling\nIt will only provide an easy access to connect a signal. Example:\nHUD \u003c-\u003e Global Signal \u003c-\u003e Character\nCharacter will send a signal that something happened but doesn’t care who received that signal so even when the signal sender is gone there will be no crash since there’s no direct donnection\nSo when to use Global Signal?\nWe want to use signal if two or more object cares about it’s significance\nExample:\nWhen enemy hitbox enters player’s hurtbox the player base class needs to know that it happened so it can reduce the player’s health and at the same time the UI also needs to know that to update the Health Bar.\nWhen to not use Global Signal?\nIf the receiver has a more convinient way to connect to the signal then it’s best to not use a Global Signal\nSo there will be a singleton named SignalManager that’ll act as a bridge between nodes, and any node can send and receive signal to and from this singleton.\nAssumption is Evil Do not assume that something will exist, that’s a quick and easy way to create a debugging hell.\nFor example:\nThe enemy needs player position at all times for it to works, this is an assumption it assumes that the player will exist no matter what but in reality this is hard to achieve, the enemy ai can exist before the player or the player may die and dissapear from meory in that case the entire game will break.\nSince GDScript is not enforcing any kind of safety regarding this we have to improvise and restrain ourself from using unsafe reference.\nUnsafe refrence usually is a fruit of a quick solution that our head conjure and more often than not the first solution that came into our head isn’t the greatest, so just keep in mind that when we create an unsafe reference there might be a better way of doing it.\nFinite State Machine We’ll be using FSM to manage controlled entity, because it’s simple enough to impelement but more importantly controlled entity is predictable this prevent the FSM to blow up in lines, and we’re not going to use it to control uncontrolled entity.\nFor the current implementation of the State Machine please read the code under common/state_machine.gd it heavily use polymorphism to generalize things.\nBehaviour Tree This is a solution to define the behaviour of an uncontrolled entity, Altho this is way more boiler plate up front and is harder to understand but it ultimately better for complex but predictable behavior.\nIf we’re using FSM for contorlling enemy behavior it can work for simpler enemy but at a certain threshold even adding just one state will require a lot of modification to existing code and that’s less than desirable with Behaviour Tree adding new behavior is more cost effective, and somewhere down the road we’ll a boss enemy which will definitely have a lot behavior and that’s going to be realy messy.\nWe’re not gonna implement our own Behaviour Tree instead we’re going to use a Plugin for it.\nSingleton I know, I know, I’ve been saying that I hate this one pattern but it’s somewhat unavoidable there’s no escaping it, we’re just going to have to use it better.\nAs a rule of them if the singleton can exist in another game without a lot of modification then it’s generic enough to be a singleton after all most of the problem with signleton is the tight coupling and it it’s not tight and just provide an easy acess to something then yeah that’s nice.\n",
+    "description": "",
+    "tags": null,
+    "title": "Pattern and Architecture",
+    "uri": "/development/pattern_and_architecture/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Weapon",
+    "uri": "/game-design/weapon/"
+  },
+  {
+    "content": "Why we refactor  Makes the code easier to understand It helps us find bugs It prevent spaghet reach a critical point It will be a time saver in the long run  When to refactor Traditionally we should refactor when the same code is written three times and when it’s startig to become hard to understand. But in this project we’ll do it after every feature added.\nSigns of spaghettification This is what we need to refactor if any of this are true then it’s begging to be refactored:\n Duplicated code Hard to understand function / variable name Long ass function Long parameter list (unless it’s a constructor) Global data Mutable data Divergent change Repeated Switch Deeply nested loops Large class Comments  To be honest we don’t really need a long list of what to refactor because deep within we already know what’s fucked up and what’s perfectly fine.\n",
+    "description": "",
+    "tags": null,
+    "title": "Refactoring",
+    "uri": "/development/refactoring/"
+  },
+  {
+    "content": "Why Testing There’s a lot of benefits that come with testing but primarily we need to test our code for these reasons:\n It discourage tight coupling It Improves our design It saves time in the long run  How We’re going to use GUT plugin for testing, it works like any other testing tool so there’s no need of further explanation because it’s just generic unit testing.\nOne thing to note that if the scene really needs a global data at the very least use depedency injection instead of tight coupling.\n",
+    "description": "",
+    "tags": null,
+    "title": "Testing",
+    "uri": "/development/testing/"
+  },
+  {
+    "content": "We’re not going to use any conventional versioning here, we’re going to use our own versioning method which is Version Milestone: Codename\nExample: Combat Ready: Chamomile\nFor the code name we’re going to use flower name to be inline with the recurring theme of the game.\nSince we won’t do any patch after the release it’s not neccesary to use semantic versioning.\n",
+    "description": "",
+    "tags": null,
+    "title": "Versioning",
+    "uri": "/development/versioning/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Categories",
+    "uri": "/categories/"
+  },
+  {
+    "content": "Prosperosus Official Documentation This documentation website is created to be the “source of truth” of our knowledge base, we have a lot of resources and information scattered around and it’s getting somehwat difficult to find which one is true.\nThis doesn’t render the existing docs deprecated, they’re still relevant the main purpose of this site is to group them nicely in a single place not to replace them, almost all of th information here is taken from the scattered docs anyway lel, just as a rule of thumb if there are conflicting information please refer to the one this site.\n Info the doc will be using prosperosus and Aonahara Downfall interchangeably\n  Main contents  Design Documentation Technical Documentation  Become a contributor Oh yeah btw this is open for everyone, so feel free to update this documentation by just clicking the Edit link displayed on top right of each page. Your changes will be deployed automatically once they were reviewed.\nGetting support To get support, regarding this doc or anything about the game just pick up your banana phone and ring posei.\nCredits site created with the epic Hugo\nepic aonaharian and prosperosus bros who made all of this possible\n",
+    "description": "",
+    "tags": null,
+    "title": "Prosperosus Documentation",
+    "uri": "/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tags",
+    "uri": "/tags/"
+  }
+]

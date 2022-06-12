@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.96.0" />
+    <meta name="generator" content="Relearn 4.0.4&#43;tip">
+    <meta name="description" content="Documentation for the critically belated ARPG Aonahara Downfall">
+    <meta name="author" content="Aonahara Resistance">
+    <title>Pattern and Architecture :: Prosperosus Doc</title>
+    <link rel="canonical" type="text/html" href="/development/pattern_and_architecture/" title="Prosperosus Doc" />
+    <link rel="alternate" type="application/rss&#43;xml" href="/development/pattern_and_architecture/index.xml" title="Prosperosus Doc" />
+    <link href="/css/nucleus.css?1655045976" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1655045976" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1655045976" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1655045976" rel="stylesheet">
+    <link href="/css/auto-complete.css?1655045976" rel="stylesheet">
+    <link href="/css/theme.css?1655045976" rel="stylesheet">
+    <link href="/css/theme-relearn-dark.css?1655045976" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1655045976" rel="stylesheet">
+    <link href="/css/variant.css?1655045976" rel="stylesheet">
+    <link href="/css/print.css?1655045976" rel="stylesheet">
+    <script src="/js/variant.js?1655045976"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var index_url="/index.json";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      // some further base stuff
+      var baseUriFull='https:\/\/example.com/';
+      variants.init( [ 'relearn-dark' ] );
+    </script>
+    <script src="/js/jquery.min.js?1655045976"></script>
+
+  </head>
+  <body class="mobile-support print" data-url="/development/pattern_and_architecture/">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+             <a class="nav nav-next" href="/development/refactoring/" title="Refactoring (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+             <a class="nav nav-prev" href="/development/code_guidlines/" title="Code Guidelines (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="top-print-link">
+            <a class="print-link" title='Print whole chapter (CTRL+ALT+p)' href="/development/pattern_and_architecture/_print/">
+              <i class="fas fa-print fa-fw"></i>
+            </a>
+          </div>
+          <div id="top-github-link">
+            <a class="github-link" title='Edit (CTRL+ALT+e)' href="https://github.com/Aonahara-Resistance/Aonahara-Downfall-Doc-Generator/edit/main/content/development/pattern_and_architecture/_index.en.md" target="blank">
+              <i class="fas fa-pen fa-fw"></i>
+            </a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" title='Menu (CTRL+ALT+m)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <meta itemprop="itemListOrder" content="Descending" />
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="3" /><a itemprop="item" href="/"><span itemprop="name">Prosperosus Documentation</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="2" /><a itemprop="item" href="/development/"><span itemprop="name">Development</span></a> > </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><meta itemprop="position" content="1" /><a itemprop="item" href="/development/pattern_and_architecture/" aria-disabled="true"><span itemprop="name">Pattern and Architecture</span></a></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#base-paradigm">Base Paradigm</a></li>
+        <li><a href="#call-down-signal-up">Call Down Signal Up</a></li>
+        <li><a href="#inheritance-over-composition">Inheritance over Composition</a></li>
+        <li><a href="#context-based-coupling">Context Based Coupling</a></li>
+        <li><a href="#signal-and-global-signal">Signal and Global Signal</a></li>
+        <li><a href="#assumption-is-evil">Assumption is Evil</a></li>
+        <li><a href="#finite-state-machine">Finite State Machine</a></li>
+        <li><a href="#behaviour-tree">Behaviour Tree</a></li>
+        <li><a href="#singleton">Singleton</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <div id="head-tags">
+          </div>
+    
+          <article>
+
+<h1>Pattern and Architecture</h1>
+<h3 id="base-paradigm">Base Paradigm</h3>
+<p>The official godot documentation favor traditional OOP over any other paradigm mainly ECS and we&rsquo;re going to follow that, but it&rsquo;s not restricting as in godot also offer a high level composition with scene but it&rsquo;ll be primarily composed with Inheritance</p>
+<h3 id="call-down-signal-up">Call Down Signal Up</h3>
+<p>As a rule of thumb Parent should manage it&rsquo;s child, and the child shouldn&rsquo;t call the parent directly.
+If the child need the parent to do something it should use a signal.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Do
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Call Down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">get_node</span><span class="p">(</span><span class="s">&#34;child&#34;</span><span class="p">).</span><span class="nf">do_something</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Signal Up
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">signal</span> <span class="nx">child_hurt</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">damaged</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">emit_signal</span><span class="p">(</span><span class="s">&#34;child_hurt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">_on_child_hurt</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// do_something()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Don&#39;t
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Call up
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">get_node</span><span class="p">(</span><span class="s">&#34;../..&#34;</span><span class="p">).</span><span class="nf">parent_do_something</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="inheritance-over-composition">Inheritance over Composition</h3>
+<p>As mentioned above godot favor Inheritance over Composition for example A player class would look like this</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
+</span></span></code></pre></div><p>instead of</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Character</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Control</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Sprite</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span></code></pre></div><p>But since godot support combining scens togther it will usually looks like this</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">KinematicBody2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Sprite</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hitbox</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2d</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hurtbox</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Node2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Weapon</span>
+</span></span></code></pre></div><p>In this specific project, we should encourage shallow Inheritance but wide.</p>
+<h3 id="context-based-coupling">Context Based Coupling</h3>
+<p>Objects should be coupled when they&rsquo;re related enough.<br>
+Example:<br>
+A player will have a sprite and this instance of sprite is specifically exist for the player itself so any other object will not cares about its existence is the character base class therefore it&rsquo;s safe to tightly couple them.</p>
+<p>If it&rsquo;s not related enough, do not couple them<br>
+Example:<br>
+An npc have the ability to prompt dialog, so at a first glance it is reasonable to put the dialog node inside the scene tree of that NPC but dialog can also can be called other than NPC so it&rsquo;s a bad idea to couple them together, if this is the case please refer to Global Signal.</p>
+<h3 id="signal-and-global-signal">Signal and Global Signal</h3>
+<p>This is an extennsion of the regular Signal pattern the regular signal pattern usually used when a child needs to notify its parent that something happened, if that&rsquo;s the case a regular signal will do wonders but when other Node needs to know something happened but doesn&rsquo;t have a direct connection to the Node that&rsquo;s when we should use Global Signal.</p>
+<p>We will use a forbidden technique here:<br>
+<strong>Singleton</strong></p>
+<p>Calm dowm, this is probably one of the safest singleton that we can use because it doesn&rsquo;t create any tight coupling<br>
+It will only provide an easy access to connect a signal.
+Example:<br>
+HUD &lt;-&gt; Global Signal &lt;-&gt; Character<br>
+Character will send a signal that something happened but doesn&rsquo;t care who received that signal so even when the signal sender is gone there will be no crash since there&rsquo;s no direct donnection</p>
+<p>So when to use Global Signal?<br>
+We want to use signal if two or more object cares about it&rsquo;s significance<br>
+Example:<br>
+When enemy hitbox enters player&rsquo;s hurtbox the player base class needs to know that it happened so it can reduce the player&rsquo;s health and at the same time the UI also needs to know that to update the Health Bar.</p>
+<p>When to not use Global Signal?<br>
+If the receiver has a more convinient way to connect to the signal then it&rsquo;s best to not use a Global Signal</p>
+<p>So there will be a singleton named SignalManager that&rsquo;ll act as a bridge between nodes, and any node can send and receive signal to and from this singleton.</p>
+<h3 id="assumption-is-evil">Assumption is Evil</h3>
+<p>Do not assume that something will exist, that&rsquo;s a quick and easy way to create a debugging hell.</p>
+<p>For example:<br>
+The enemy needs player position at all times for it to works, this is an assumption it assumes that the player will exist no matter what but in reality this is hard to achieve, the enemy ai can exist before the player or the player may die and dissapear from meory in that case the entire game will break.</p>
+<p>Since GDScript is not enforcing any kind of safety regarding this we have to improvise and restrain ourself from using unsafe reference.</p>
+<p>Unsafe refrence usually is a fruit of a quick solution that our head conjure and more often than not the first solution that came into our head isn&rsquo;t the greatest, so just keep in mind that when we create an unsafe reference there might be a better way of doing it.</p>
+<h3 id="finite-state-machine">Finite State Machine</h3>
+<p>We&rsquo;ll be using FSM to manage controlled entity, because it&rsquo;s simple enough to impelement but more importantly controlled entity is predictable this prevent the FSM to blow up in lines, and we&rsquo;re not going to use it to control uncontrolled entity.</p>
+<p>For the current implementation of the State Machine please read the code under <code>common/state_machine.gd</code> it heavily use polymorphism to generalize things.</p>
+<h3 id="behaviour-tree">Behaviour Tree</h3>
+<p>This is a solution to define the behaviour of an uncontrolled entity, Altho this is way more boiler plate up front and is harder to understand but it ultimately better for complex but predictable behavior.</p>
+<p>If we&rsquo;re using FSM for contorlling enemy behavior it can work for simpler enemy but at a certain threshold even adding just one state will require a lot of modification to existing code and that&rsquo;s less than desirable with Behaviour Tree adding new behavior is more cost effective, and somewhere down the road we&rsquo;ll a boss enemy which will definitely have a lot behavior and that&rsquo;s going to be realy messy.</p>
+<p>We&rsquo;re not gonna implement our own Behaviour Tree instead we&rsquo;re going to use a Plugin for it.</p>
+<h3 id="singleton">Singleton</h3>
+<p>I know, I know, I&rsquo;ve been saying that I hate this one pattern but it&rsquo;s somewhat unavoidable there&rsquo;s no escaping it, we&rsquo;re just going to have to use it better.</p>
+<p>As a rule of them if the singleton can exist in another game without a lot of modification then it&rsquo;s generic enough to be a singleton after all most of the problem with signleton is the tight coupling and it it&rsquo;s not tight and just provide an easy acess to something then yeah that&rsquo;s nice.</p>
+
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <style>
+            #logo img,
+            #logo img * {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              fill: #282828 !important;
+              fill: var(--MENU-SECTIONS-BG-color) !important;
+              opacity: .945;
+            }
+            a#logo {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
+              font-size: 24px;
+              font-weight: 300;
+              margin-top: -13px;
+              white-space: nowrap;
+            }
+            a#logo:hover {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+            }
+            #logo img {
+              margin-bottom: -20px;
+              margin-left: -25.5px;
+								webkit-transform: scaleX(-1);
+								transform: scaleX(-1);
+            }
+            @media only all and (max-width: 59.938em) {
+              a#logo {
+                font-size: 25px;
+                margin-top: -3px;
+              }
+              #logo img {
+                margin-bottom: -12px;
+              }
+            }
+            @media all and (-ms-high-contrast:none) {
+              /* IE11s understanding of positioning is weird at best */
+              a#logo {
+                margin-top: -58px;
+              }
+              #logo img {
+                margin-bottom: -62px;
+              }
+            }
+          </style>
+          <a id="logo" href="/">
+						<img height="50"  src="https://cdn.discordapp.com/attachments/825577206696771664/984383862203379722/emu_head.png"/>
+						prosperosus doc
+          </a>
+
+        </div>
+        <div class="searchbox default-animation">
+          <label for="search-by"><i class="fas fa-search"></i></label>
+          <input data-search-input id="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div>
+        <script src="/js/lunr.min.js?1655045976"></script>
+        <script src="/js/auto-complete.js?1655045976"></script>
+        <script src="/js/search.js?1655045976"></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics collapsible-menu">
+          <li data-nav-id="/general/" title="General" class="dd-item"><input type="checkbox" id="section-1f0054c808cdc74bb235e28a0afa39e9" class="toggle"/><label for="section-1f0054c808cdc74bb235e28a0afa39e9" ></label><a href="/general/">General<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/general/introduction/" title="Introduction" class="dd-item"><a href="/general/introduction/">Introduction<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/general/milestones/" title="Milestones" class="dd-item"><a href="/general/milestones/">Milestones<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/game-design/" title="Game Design" class="dd-item"><input type="checkbox" id="section-b7ef76c9bba23d547ac82da61dec3215" class="toggle"/><label for="section-b7ef76c9bba23d547ac82da61dec3215" ></label><a href="/game-design/">Game Design<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/game-design/blessing/" title="Blessing" class="dd-item"><a href="/game-design/blessing/">Blessing<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/boss/" title="Boss" class="dd-item"><a href="/game-design/boss/">Boss<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/character/" title="Character" class="dd-item"><a href="/game-design/character/">Character<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/consumable/" title="Consumable" class="dd-item"><a href="/game-design/consumable/">Consumable<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/enemy/" title="Enemy" class="dd-item"><a href="/game-design/enemy/">Enemy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/game-design/weapon/" title="Weapon" class="dd-item"><a href="/game-design/weapon/">Weapon<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/development/" title="Development" class="dd-item parent"><input type="checkbox" id="section-4f0a8856bebd6a1716664666c2720c57" class="toggle" checked/><label for="section-4f0a8856bebd6a1716664666c2720c57" ></label><a href="/development/">Development<i class="fas fa-check read-icon"></i></a><ul>
+          <li data-nav-id="/development/design_philosophy/" title="Design Philosopy" class="dd-item"><a href="/development/design_philosophy/">Design Philosopy<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/code_guidlines/" title="Code Guidelines" class="dd-item"><a href="/development/code_guidlines/">Code Guidelines<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/pattern_and_architecture/" title="Pattern and Architecture" class="dd-item active"><a href="/development/pattern_and_architecture/">Pattern and Architecture<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/refactoring/" title="Refactoring" class="dd-item"><a href="/development/refactoring/">Refactoring<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/testing/" title="Testing" class="dd-item"><a href="/development/testing/">Testing<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/development/versioning/" title="Versioning" class="dd-item"><a href="/development/versioning/">Versioning<i class="fas fa-check read-icon"></i></a></li></ul></li>
+        </ul>
+        <div class="footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"/>
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <a class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <select id="select-variant" onchange="variants.changeVariant( this.value );">
+                    <option id="relearn-dark" value="relearn-dark" selected>Relearn Dark</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </a>
+              <script>variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+	    <p></p>
+
+        </div>
+      </div>
+    </aside>
+
+    <script src="/js/clipboard.min.js?1655045976"></script>
+    <script src="/js/perfect-scrollbar.min.js?1655045976"></script>
+    <script src="/js/featherlight.min.js?1655045976"></script>
+    <script src="/js/theme.js?1655045976"></script>
+  </body>
+</html>
