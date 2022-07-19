@@ -10,17 +10,17 @@
     <title>Prosperosus Documentation :: Prosperosus Doc</title>
     <link rel="canonical" type="text/html" href="/" title="Prosperosus Doc" />
     <link rel="alternate" type="application/rss&#43;xml" href="/index.xml" title="Prosperosus Doc" />
-    <link href="/css/nucleus.css?1655045976" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1655045976" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1655045976" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1655045976" rel="stylesheet">
-    <link href="/css/auto-complete.css?1655045976" rel="stylesheet">
-    <link href="/css/theme.css?1655045976" rel="stylesheet">
-    <link href="/css/theme-relearn-dark.css?1655045976" rel="stylesheet" id="variant-style">
-    <link href="/css/ie.css?1655045976" rel="stylesheet">
-    <link href="/css/variant.css?1655045976" rel="stylesheet">
-    <link href="/css/print.css?1655045976" rel="stylesheet">
-    <script src="/js/variant.js?1655045976"></script>
+    <link href="/css/nucleus.css?1658264663" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1658264663" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1658264663" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1658264663" rel="stylesheet">
+    <link href="/css/auto-complete.css?1658264663" rel="stylesheet">
+    <link href="/css/theme.css?1658264663" rel="stylesheet">
+    <link href="/css/theme-relearn-dark.css?1658264663" rel="stylesheet" id="variant-style">
+    <link href="/css/ie.css?1658264663" rel="stylesheet">
+    <link href="/css/variant.css?1658264663" rel="stylesheet">
+    <link href="/css/print.css?1658264663" rel="stylesheet">
+    <script src="/js/variant.js?1658264663"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -36,7 +36,7 @@
       var baseUriFull='https:\/\/example.com/';
       variants.init( [ 'relearn-dark' ] );
     </script>
-    <script src="/js/jquery.min.js?1655045976"></script>
+    <script src="/js/jquery.min.js?1658264663"></script>
 
   </head>
   <body class="mobile-support print" data-url="/">
@@ -357,8 +357,7 @@ file		= snake_case
 <p>GDScript doesn&rsquo;t really have an Access Modifier so this is just a convention to mark stuff therefore this will not effect the code in any way.</p>
 <p>To mark a variable as private prefix it with an underscore.<br>
 leave public and protected variable as is.</p>
-<p>Method doesn&rsquo;t have an access modifier, a method with underscore prefix indicate that it&rsquo;s somekind of callback function and not a private metod.
-If an object can access another object method then it&rsquo;s either safe to do so or there&rsquo;s something wrong with the architecture, as a rule of thumb if the method you&rsquo;re trying to access is part of the local scene tree then it&rsquo;s fine to access it but if it&rsquo;s not please proceed with caution.</p>
+<p>Method with underscore as prefix is also considered a private method.</p>
 <h3 id="getter-setter">Getter Setter</h3>
 <p>Only create getter setter when there&rsquo;s an extra stuff taking place if the getter setter serve no purpose it&rsquo;s better to not have them in the first place.</p>
 <p>prefix the member variable with an underscore<br>
@@ -405,22 +404,24 @@ If the child need the parent to do something it should use a signal.</p>
 </span></span><span class="line"><span class="cl"><span class="c1">// Don&#39;t
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Call up
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">get_node</span><span class="p">(</span><span class="s">&#34;../..&#34;</span><span class="p">).</span><span class="nf">parent_do_something</span><span class="p">()</span>
-</span></span></code></pre></div><h3 id="inheritance-over-composition">Inheritance over Composition</h3>
-<p>As mentioned above godot favor Inheritance over Composition for example A player class would look like this</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
-</span></span></code></pre></div><p>instead of</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Character</span>
+</span></span></code></pre></div><h3 id="composition-over-inheritance">Composition over Inheritance</h3>
+<p>We will favor Composition over inheritance because <del>primeagen says so</del> the tree behavior is brittle</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Enemy</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">Control</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">Sprite</span>
-</span></span><span class="line"><span class="cl">	<span class="o">...</span>
-</span></span></code></pre></div><p>But since godot support combining scens togther it will usually looks like this</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">KinematicBody2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
-</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Sprite</span>
-</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hitbox</span>
-</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2d</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hurtbox</span>
-</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Node2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Weapon</span>
-</span></span></code></pre></div><p>In this specific project, we should encourage shallow Inheritance but wide.</p>
-<h3 id="context-based-coupling">Context Based Coupling</h3>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Character</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Control</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Sprite</span>
+</span></span></code></pre></div><p>instead of</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">Entity</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Enemy</span>
+</span></span></code></pre></div><p>But since godot base class heavily uses inheritance it will usually looks like this</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">KinematicBody2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Character</span>
+</span></span><span class="line"><span class="cl">									<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Sprite</span>
+</span></span><span class="line"><span class="cl">									<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hitbox</span>
+</span></span><span class="line"><span class="cl">									<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Area2d</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Hurtbox</span>
+</span></span><span class="line"><span class="cl">									<span class="o">-</span><span class="p">&gt;</span> <span class="nx">Node2D</span> <span class="o">-</span><span class="p">&gt;</span> <span class="nx">Weapon</span>
+</span></span></code></pre></div><h3 id="context-based-coupling">Context Based Coupling</h3>
 <p>Objects should be coupled when they&rsquo;re related enough.<br>
 Example:<br>
 A player will have a sprite and this instance of sprite is specifically exist for the player itself so any other object will not cares about its existence is the character base class therefore it&rsquo;s safe to tightly couple them.</p>
@@ -508,8 +509,9 @@ The enemy needs player position at all times for it to works, this is an assumpt
 <li>It saves time <em>in the long run</em></li>
 </ul>
 <h3 id="how">How</h3>
-<p>We&rsquo;re going to use GUT plugin for testing, it works like any other testing tool so there&rsquo;s no need of further explanation because it&rsquo;s just generic unit testing.</p>
-<p>One thing to note that if the scene really needs a global data at the very least use depedency injection instead of tight coupling.</p>
+<p>The kind of testing we&rsquo;re going to do is integration testing.
+So, we aren&rsquo;t going to test isolated methods we&rsquo;ll test the scene as if it&rsquo;s played normally</p>
+<p>For the framework we&rsquo;re going to use GDUnit.</p>
 
             <footer class="footline">
             </footer>
@@ -592,9 +594,9 @@ For the code name we&rsquo;re going to use flower name to be inline with the rec
           <input data-search-input id="search-by" type="search" placeholder="Search...">
           <span data-search-clear=""><i class="fas fa-times"></i></span>
         </div>
-        <script src="/js/lunr.min.js?1655045976"></script>
-        <script src="/js/auto-complete.js?1655045976"></script>
-        <script src="/js/search.js?1655045976"></script>
+        <script src="/js/lunr.min.js?1658264663"></script>
+        <script src="/js/auto-complete.js?1658264663"></script>
+        <script src="/js/search.js?1658264663"></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics collapsible-menu">
@@ -654,9 +656,9 @@ For the code name we&rsquo;re going to use flower name to be inline with the rec
       </div>
     </aside>
 
-    <script src="/js/clipboard.min.js?1655045976"></script>
-    <script src="/js/perfect-scrollbar.min.js?1655045976"></script>
-    <script src="/js/featherlight.min.js?1655045976"></script>
-    <script src="/js/theme.js?1655045976"></script>
+    <script src="/js/clipboard.min.js?1658264663"></script>
+    <script src="/js/perfect-scrollbar.min.js?1658264663"></script>
+    <script src="/js/featherlight.min.js?1658264663"></script>
+    <script src="/js/theme.js?1658264663"></script>
   </body>
 </html>

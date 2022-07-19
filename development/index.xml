@@ -46,8 +46,8 @@ Signs of spaghettification This is what we need to refactor if any of this are t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://example.com/development/testing/</guid>
       <description>Why Testing There&amp;rsquo;s a lot of benefits that come with testing but primarily we need to test our code for these reasons:
- It discourage tight coupling It Improves our design It saves time in the long run  How We&amp;rsquo;re going to use GUT plugin for testing, it works like any other testing tool so there&amp;rsquo;s no need of further explanation because it&amp;rsquo;s just generic unit testing.
-One thing to note that if the scene really needs a global data at the very least use depedency injection instead of tight coupling.</description>
+ It discourage tight coupling It Improves our design It saves time in the long run  How The kind of testing we&amp;rsquo;re going to do is integration testing. So, we aren&amp;rsquo;t going to test isolated methods we&amp;rsquo;ll test the scene as if it&amp;rsquo;s played normally
+For the framework we&amp;rsquo;re going to use GDUnit.</description>
     </item>
     <item>
       <title>Versioning</title>
