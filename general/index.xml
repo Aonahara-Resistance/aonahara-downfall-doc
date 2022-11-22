@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on Prosperosus Doc</title>
+    <link>https://example.com/general/</link>
+    <description>Recent content in General on Prosperosus Doc</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language><atom:link href="https://example.com/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>https://example.com/general/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/general/introduction/</guid>
+      <description>About Aonahara: Downfall or project prosperosus is a game born from a joke (just like everything in Aonahara), after going thorugh multiple genre shift the game finally settled as an ARPG combined with Bullet Hell, Fn like to describe it as soul knight ish bullet hell.
+The idea was born around late march 2021, at first there was only one person working on it however during december 2021 there was a somewhat open recruitment and since then a fair amount of people joined the unpaid labor, which help boost the game progress by a lot.</description>
+    </item>
+    <item>
+      <title>Milestones</title>
+      <link>https://example.com/general/milestones/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/general/milestones/</guid>
+      <description>To see how far we&amp;rsquo;ve come and how close is our imminent victory
+Early Build Movement Basic Enemy Character Base Basic Combat Playable Early Characters Skill System Buff and Blessing Combat Ready Consumables Modular Levels Firing Range Cheat Pannel Flushed Out Enemy AI Inventory Equipment Feature Complete Leveling Shop Boss Fight Quest Limit Break
+&amp;hellip; Content Complete </description>
+    </item>
+    <item>
+      <title>Godot 4 Migration</title>
+      <link>https://example.com/general/godot4-migration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://example.com/general/godot4-migration/</guid>
+      <description>The entire code of the pre-alpha combat ready will be migrated to Godot 4, We&amp;rsquo;ve tried to migrate it without a document and just bulldoze through it but it doesn&amp;rsquo;t work well.
+Why To put it simply Godot 4 will fix a lot of the issues that we&amp;rsquo;re facing right now. Altho it might quite sometime to migrate I (posei) firmly believe it&amp;rsquo;ll be better in the long run. Lastly it&amp;rsquo;ll be a good opportunity to revamp the code architecture, and with that I think we&amp;rsquo;re going to be increase the development speed by a lot lot.</description>
+    </item>
+  </channel>
+</rss>
